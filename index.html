@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SportsClub - Fitness Club</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Dosis|Enriqueta|Cabin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+   </head> 
+  <body>
+    <header>
+      <div class="content">
+        <div id="logo-wrapper"><a href="/"><img src="img/logo.png" alt="logo" id="logo-img"> <span>SportsClub</span></a></div>
+        <nav id="nav">
+        	<ul>
+        		<li><a href="#sign-up-form" class="active" title="Home" >Home</a></li>
+        		<li><a href="#classes-schedule" title="Classes">Classes</a></li>
+        		<li><a href="#membership-options" title="Membership">Membership</a></li>
+        		<li><a  href="#gym-services" title="Services">Services</a></li>
+        		<li><a href="#gym-information" title="Contact">Contact Us</a></li>
+        	</ul>
+        </nav>
+      </div>
+    </header>	 	
+    <!-- START: #sign-up-form -->
+  	<div id="sign-up-form" class="site-section">
+  		<div class="content">
+        <div id="sign-up-forms-content">
+          <div id="register-new-member-form">
+            <h2>Member Registration</h2>
+            <p>Already a member? <span id="login_here" class="sign-up-link">Log In Here</span></p>
+            <form id="register-form" action="users.php" method="POST">
+              <div class="form-element-wrapper">
+                <label for="membername">First and Last Name:</label> 
+                <input type="text" name="membername" id="membername" value="" />
+              </div>
+              <div class="form-element-wrapper">
+                <label for="email">E-Mail Address:</label>
+                <input type="email" name="email" id="email" value="" />
+              </div>
+              <div class="form-element-wrapper">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" value="" />
+              </div>
+              <div class="form-element-wrapper">  
+                <label for="password">Password: </label>
+                <input type="password" id="password" name="password" value="" /> 
+              </div>
+              <div class="form-element-wrapper">
+                <label for="verify_password">Verify Password:</label>
+                <input type="password" id="verify_password" name="vpassword" value="" />
+                <span class="warning" id="passwordmatch"></span>
+              </div>
+              <button type="submit" class="form-button" id="register-form-submit" form="register-form" value="Register">Register</button>
+            </form>
+          </div>
+
+          <form class="hidden" action="" id="login-form">
+            <div class="form-element-wrapper">
+              <label for="username">Username:</label>
+              <input type="text" name="username" id="username_user" />
+            </div>
+            <div class="form-element-wrapper">
+              <label for="password">Password:</label>
+              <input type="password" id="passworduser" name="password" />
+              <span class="warning" id="loginfailed"></span>
+            </div>
+            <input class="form-button" id="login" type="button" name="login" value="Log In"/>
+          </form>
+        </div>
+        <div id="login-success-msg"></div>
+        <div id="user_profile" class="hidden">
+          <div id="user_schedule">
+            <p>Your Schedule</p>
+            <a href="#classes-schedule" title="Add Classes">Add Classes &darr;</a></div>
+          <div id="user_schedule_details"></div>
+        </div>
+  		</div> <!-- END: content -->
+    </div> 
+    <!-- END: #sign-up-form -->
+    <!-- START: #sign-up-form -->
+  	<div id="classes-schedule" class="site-section">
+  		<div class="content" >
+        <h2>Fitness Classes Schedule</h2>
+         <table id="schedule">
+          <tr>
+            <th>Day of The Week</th>
+            <th>Starts At</th>
+            <th>Instructor's First Name</th>
+            <th>Instructor's Last Name</th>
+            <th>Class Type</th>
+            <th>Duration of the Class (minutes)</th>
+            <th>Reservation Required?</th>
+            <th id="reserveHead" class="hidden">Save to the Schedule</th>
+          </tr>
+        </table> 
+  		</div> 
+    </div> 
+    <!-- END: #sign-up-form -->
+  	<!-- START: #membership-options -->
+    <div id="membership-options" class="site-section">
+  		<div class="content">
+        <div class="membership-info">
+          <h4>General Membership</h4>
+          <ul>
+            <li>Accesss to all of our classes</li>
+            <li>Beauty products available in the locker rooms (shampoo, conditioner, shower gel, hair spray, body lotion)</li>
+            <li>Towel service</li>
+            <li>15 guest passes included</li>
+            <li>Pay month-to-month or upfront for a year to save money</li>
+          </ul>
+        </div>
+        <div class="membership-info">
+          <h4>Student Membership</h4>
+          <ul>
+            <li>Same ammenities provided as with general membership</li>
+            <li>Student ID is required to get approval for student discount</li>
+            <li>Valid only for the duration of educational programm</li>
+            <li>Membership can be put on hold for no extra fees during the school breaks</li>
+          </ul>
+        </div>
+        <div class="membership-info">
+          <h4>Family Membership</h4>
+          <ul>
+            <li>Save more by signing up as a family!</li>
+            <li>Day Care is included in the price</li>
+            <li>Kids get 50% off the general membership and always have an access to the day care room</li>
+            <li>Special lockers are available for young mothers</li>
+          </ul>
+        </div>
+      </div> <!-- END: content -->
+    </div> 
+    <!-- END: #membership-options -->
+  	<!-- START: #gym-services -->
+  	<div id="gym-services" class="site-section">
+  		<div class="content">
+        <div class="services-description">
+          <div class="img-wrapper"><img src="img/service_towel.png"></div>
+          <h4>Towel Service</h4>
+          <p>Towels of various sizes are available throughout the gym at no extra cost. Bath size towels are placed in the locker room and sports size towels are available throught the fitness floor.  </p>
+        </div>
+        <div class="services-description">
+          <div class="img-wrapper"><img src="img/service_spa.png"></div>
+          <h4>Spa & Massage</h4>
+          <p>Spa, massage, facials - we offer a wide assortment of services in our on-site spa salon to help you relax, improve your health and flexibility, and recover from injuries. Inquire about our special pricing for new members today!</p>
+        </div>
+        <div class="services-description">
+          <div class="img-wrapper"><img src="img/service_daycare.png"></div>
+          <h4>Day Care</h4>
+          <p>Various kids programs are available, from Kids' Zumba to Boot Camp. Day care services are available all the time during the operational hours at the gym to be convenient for any schedule. </p>
+        </div>
+  		</div> 
+    </div> 
+  	<!-- END: #gym-services -->
+    <!-- START: #gym-information -->
+  	<div id="gym-information" class="site-section">
+  		<div class="content">
+        <div id="contact-info">
+        	<div class="contacts">
+          	<h4>Contact information:</h4>
+            <ul class="contact-details">
+          	  <li>Phone: 617-000-0000</li>
+              <li>Fax: 617-000-0001</li> 
+              <li>Email: info@sportsclubgym.com</li>
+            </ul>
+
+          </div>
+    	    <div class="contacts">
+            <h4>Visit us:</h4>
+            <ul class="contact-details">
+              <li>360 Hungtington Avenue,</li>
+          	  <li>Boston, MA 02115</li>
+          	  <li>United States</li>
+            </ul>   
+          </div>
+    	    <div class="contacts">
+            <h4>Social Media:</h4>
+            <a href="http://"><div class="social-icon"><div class="fa fa-twitter social-fa"></div></div></a>
+            <a href="http://"><div class="social-icon"><div class="fa fa-linkedin social-fa"></div></div></a>
+            <a href="http://"><div class="social-icon"><div class="fa fa-facebook social-fa"></div></div></a>
+          </div>
+        </div>
+        <!-- google maps UI elements -->
+        <div id="map-section">
+          <div id="map"></div>
+          <div id="warnings-panel"></div>
+          <div id="map-content-placeholder">
+            <p id="map-text">Calculate your commute time and distance to the gym from<br/> any location! Enter either your work or home address</p>
+            <input type="text" id="homeAddress" placeholder="Enter your start address" name="homeaddress">
+            <button type="submit" class="transitButton" id="driving" value="DRIVING"><img src="img/driving.png" alt="Driving"></button>     
+            <button type="submit" class="transitButton" id="walking" value="WALKING"><img src="img/walking.png" alt="Walking"></button>   
+            <button type="submit" class="transitButton" id="bicycle" value="BICYCLING"><img src="img/bicycle.png" alt="Walking"></button>   
+            <button type="submit" class="transitButton" id="transit" value="TRANSIT"><img src="img/transit.png" alt="Transit"></button>   
+            <div id="infoPanel"></div>
+            <p class="warning" id="invalid-address"></p>
+            <div class="hidden" id="moreinfobtn"><button type="submit" id="moreInfo" data-popup-open="popup-directions">MORE INFORMATION?</button>  </div>
+            <!-- Placeholder element to display directions details -->
+            <div id="directions-window" data-popup="popup-directions">
+                <div class="popup-inner">
+                    <div id="panelContent"></div>
+                    <a class="popup-close" data-popup-close="popup-directions" href="#">x</a>
+                </div>
+            </div>
+          </div>
+        </div>
+  		</div> 
+  	</div> 	
+    <!-- END: #gym-information -->
+    <!-- START: #add-classes-form (hidden by default) -->
+    <div id="add-classes-form" class="site-section">
+      <h2>Add A Class to The Schedule</h2>
+      <form id="addClassForm" action="server.php" method="POST">
+        <div class="form-element-wrapper">
+          <label for="day">Day of The Week:</label>
+          <select name="day" id="day">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </select>
+        </div>
+        <div class="form-element-wrapper">  
+          <label for="time">Starts at:</label> 
+          <input type="text" name="time" id="time" placeholder="00:00"> 
+          <select name="ampm" id="ampm">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+        </div>
+        <div class="form-element-wrapper">  
+          <label for="firstname">Instructor's First Name:</label> 
+          <input type="text" id="firstName" name="firstname" placeholder="First Name">
+        </div>
+        <div class="form-element-wrapper">  
+          <label for="lastname">Instructor's Last Name:</label> 
+          <input type="text" id="lastName" name="lastname" placeholder="Last Name">
+        </div>
+        <div class="form-element-wrapper">  
+          <label for="exercise">Class Type:</label> 
+          <select name="exercise" id="exercise">
+            <option value="Yoga">Yoga</option>
+            <option value="Pilates">Pilates</option>
+            <option value="Dance">Dance</option>
+            <option value="Strength Training">Strength Training</option>
+            <option value="Athletic Conditioning">Athletic Conditioning</option>
+            <option value="Cycling">Cycling</option>
+            <option value="Barre">Barre</option>
+            <option value="Kickboxing">Kickboxing</option>
+          </select>
+        </div>
+        <div class="form-element-wrapper">  
+          <label for="duration">Duration of the Class (minutes):</label> 
+          <select name="duration" id="duration">
+            <option value="30">30</option>
+            <option value="45">45</option>
+            <option value="60">60</option>
+            <option value="90">90</option>
+          </select>
+        </div>
+        <div class="form-element-wrapper">
+          <label for="reservation">Reservation required?</label>  
+          <select name="reservation" id="reservation">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select> 
+        </div>    
+        <p>* All fields are required!</p> 
+        <button type="submit" form="addClassForm" id="addClassButton" class="form-button" value="Submit">submit</button>
+      </form>
+    </div>
+    <!-- END:#add-classes-form -->
+    <footer>
+      <span>Built by Masha Alisievich</span> 
+      <form id="administrator-login" class="hidden">
+        <span class="warning" id="tryagain"></span> 
+        <input type="text" name="admin-username" id="admin-username" placeholder="username">
+        <input type="password" name="admin-password" id="admin-password" placeholder="password">
+        <input id="admin-login" type="button" name="admin-login" value="OK" form="administrator-login"/>
+      </form>
+      <span id="admin-login-link">Administrator login</span> 
+      <div class="clear"></div>
+    </footer>	
+    <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/website.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fxR8kRuPYc2100HxHj3GTftCXFl-l-Y&libraries=places&callback=initMap"
+              async defer></script> -->
+  </body>
+</html>
