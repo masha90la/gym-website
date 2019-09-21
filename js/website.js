@@ -85,20 +85,9 @@ passwordNewUserVerify.addEventListener("input", checkPassword, false);
 //  ~~~~~~~~ FOR REGISTER FORM ~~~~~~~~
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // LOGIN RESULTS FOR NEW USERS. If the registration is successful, "welcome message" element contains the link to proceed to the user's new profile
-var registerComplete = false;
-var y = 0;
-
-while (y < registerFormInputs.length) {
-  if (registerFormInputs[y].value == '') {
-    registerComplete = false;
-  } else {
-    registerComplete = true;
-  }
-  y++;
-}
 
 function registerNewUser() {
-  if (passwordNewUser.value == passwordNewUserVerify.value && registerComplete == true) {
+  if (passwordNewUser.value == passwordNewUserVerify.value && validateRegistrationForm() == true) {
     registerForm.classList.add("hidden");
     document.getElementById('sign-up-forms-content').classList.add("hidden");
     loginSuccessMsg.innerHTML = 'The registration is complete!<br/> <span id="proceed" class="sign-up-link">Proceed To Your Profile &rarr;</span>';
@@ -106,6 +95,18 @@ function registerNewUser() {
     loginSuccessMsg.innerHTML = "Please, check the information and try again!"
   }
 }; 
+
+function validateRegistrationForm() {
+  y = 0;
+  while (y < registerFormInputs.length) {
+    if (registerFormInputs[y].value == '') {
+      return false;
+    } else {
+      return true;
+    }
+    y++;
+  }
+}
 // Event listener for the "Register" button to display new information for newly registered user
 registerFormSubmitButton.addEventListener("click", registerNewUser, false);
 
@@ -137,55 +138,68 @@ adminButton.addEventListener("click", adminLogin, false);
 
 
 
-// Array of users
-var users = [];
-
+/* Loading users information */
 // Object for storing users' login information
 function userLoginInfo(username, password) {
     this.username = username;
     this.password = password;
+}
+
+var allUsers = [];
+var xhr2 = new XMLHttpRequest();   
+xhr2.open('GET', 'data/users.json', true);   
+xhr2.send(null);              
+xhr2.onload = function() {                      
+  if(xhr2.status === 200 && xhr2.responseText) {                    
+    responseObject = JSON.parse(xhr2.responseText);
+    for (var i = 0; i < responseObject.users.length; i++) {
+      allUsers[i] = new userLoginInfo(responseObject.users[i].username, responseObject.users[i].password);
+    }
+  }
 };
 
 // Add new user after submitting registration form
 function addNewUser(e) {
     e.preventDefault();
-    users = new userLoginInfo(registerForm.username.value, registerForm.password.value);
-    var userNew = {"users": users};
-    $.post("users.php", {myusers: JSON.stringify(userNew)});
+    var newUser = new userLoginInfo(registerForm.username.value, registerForm.password.value);
+    allUsers.push(newUser);
+    var userPost = {"users": allUsers};
+    $.post("users.php", {myusers: JSON.stringify(userPost)});
 };
 registerForm.addEventListener("submit", addNewUser, false);
 
-// Create XMLHttpRequest object
-var xhr2 = new XMLHttpRequest();   
-xhr2.open('GET', 'data/users.json', true);   
-xhr2.send(null);              
-xhr2.onload = function() {                      
-  if(xhr.status === 200) {                      
-    responseObject = JSON.parse(xhr2.responseText);
-    for (var i = 0; i < responseObject.users.length; i++) {
-       userLogin(responseObject.users[i].username, responseObject.users[i].password) }
-  }
-};
 /*
 Function for registered users to login
-As an example,
-username: "user";
-password: "user"
 */
-  function userLogin(usr, pswd) {
-  if ((userUsername.value == "user" && userPassword.value == "user") || (userUsername.value == usr && userPassword.value == pswd)) {
+
+
+$('#login').click(function() {
+  if (userUsername.value != '' && userPassword.value !='') {
+    userLogin(userUsername.value, userPassword.value);
+  }
+});
+
+// user login function
+function userLogin(usr, pswd) {
+  var userExist = false;
+  for (var z = 0; z < allUsers.length; z++) {
+  if (allUsers[z].username == usr && allUsers[z].password == pswd) {
+    // if user is found, stop the loop
+    userExist = true;
+    break;
+    }
+  }
+  // if the user is found, show 'profile' section
+  if (userExist == true) {
     loginForm.classList.add("hidden");
     userProfile.classList.remove("hidden");
     document.getElementById('reserveHead').classList.remove("hidden");
     $('.reserveButtons').removeClass("hidden");
-
   } else {
+    // otherwise show an error message
     document.getElementById("loginfailed").innerHTML = "Login failed. Please, try again!";
   } 
 }
-
-document.getElementById("login").addEventListener("click", userLogin, false);
-
 
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
