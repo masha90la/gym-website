@@ -10,7 +10,7 @@ To run locally:<br/>
 <ul>
 <li>Clone directory</li>
 <li>$ cd path_to_directory</li>
-<li>$ php -S localhost:8080</li>
+<li>$ php -S localhost:8000</li>
 <li>http://localhost:8000/index.html</li>
 </ul>
 
